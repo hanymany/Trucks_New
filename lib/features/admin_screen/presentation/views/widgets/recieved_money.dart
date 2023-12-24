@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../core/styles.dart';
-import '../../../../../shared/maintance_form.dart';
+import 'package:trucks/core/styles.dart';
+import 'package:trucks/shared/maintance_form.dart';
 
 class RecievedMoney extends StatelessWidget {
   const RecievedMoney({super.key});
@@ -23,9 +23,9 @@ class RecievedMoney extends StatelessWidget {
                   icon: Icon(
                     Icons.arrow_forward_outlined,
                     size: 32.h,
-                  )),
+                  ),),
             )
-          ],
+          ,],
           title: Text(
             'المبالغ المستلمة',
             style: Styles.textStyle22,
@@ -41,6 +41,6 @@ class RecievedMoney extends StatelessWidget {
             ),
           ),
           itemCount: 8,
-        ));
+        ),);
   }
 }

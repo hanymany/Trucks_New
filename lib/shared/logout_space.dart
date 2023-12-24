@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:trucks/shared/logout_row.dart';
 import 'package:trucks/shared/page_divider.dart';
-
-import 'logout_row.dart';
 
 class LogoutSpace extends StatelessWidget {
   const LogoutSpace({

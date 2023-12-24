@@ -12,8 +12,6 @@ class ChooseLoginType extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
-          mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
               height: 20.h,
@@ -37,7 +35,7 @@ class ChooseLoginType extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 22.sp,
                     fontWeight: FontWeight.w700,
-                  )),
+                  ),),
             ),
             SizedBox(
               height: 21.h,

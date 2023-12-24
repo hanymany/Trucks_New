@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:trucks/core/styles.dart';
 import 'package:trucks/shared/driver_form.dart';
-
-import '../../../../../core/styles.dart';
 
 class TruckLoads extends StatelessWidget {
   const TruckLoads({super.key});
@@ -23,9 +22,9 @@ class TruckLoads extends StatelessWidget {
                   icon: Icon(
                     Icons.arrow_forward_outlined,
                     size: 32.h,
-                  )),
+                  ),),
             )
-          ],
+          ,],
           title: Text(
             "الحمولات",
             style: Styles.textStyle22,
@@ -41,6 +40,6 @@ class TruckLoads extends StatelessWidget {
             ),
           ),
           itemCount: 8,
-        ));
+        ),);
   }
 }

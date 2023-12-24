@@ -4,7 +4,7 @@ import 'package:trucks/core/component/component.dart';
 import 'package:trucks/core/styles.dart';
 import 'package:trucks/features/choose_login_type/presentation/views/choose_login_type.dart';
 import 'package:trucks/features/client_screen/presentation/views/widgets/tap_to_expand_container.dart';
-import '../../../../../shared/logout_space.dart';
+import 'package:trucks/shared/logout_space.dart';
 
 class ClientBody extends StatelessWidget {
   const ClientBody({super.key});
@@ -23,7 +23,7 @@ class ClientBody extends StatelessWidget {
             text: 'أسم العميل بالكامل',
             function: () {
               navigateandfinish(
-                  context: context, widget: const ChooseLoginType());
+                  context: context, widget: const ChooseLoginType(),);
             },
           ),
           SizedBox(
@@ -46,7 +46,7 @@ class ClientBody extends StatelessWidget {
               itemCount: 10,
             ),
           )
-        ],
+        ,],
       ),
     );
   }

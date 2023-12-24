@@ -12,15 +12,15 @@ class refresh_widget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        navigate_to(context: context, widget: DriverLoginView());
+        navigate_to(context: context, widget: const DriverLoginView());
       },
       child: CircleAvatar(
-          backgroundColor: Color(0xffFFCC86),
+          backgroundColor: const Color(0xffFFCC86),
           radius: 60.r,
           child: CircleAvatar(
               backgroundColor: Colors.white,
               radius: 55.r,
-              child: Image.asset('assets/images/refresh_symbol.png'))),
+              child: Image.asset('assets/images/refresh_symbol.png',),),),
     );
   }
 }

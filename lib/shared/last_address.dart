@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../core/styles.dart';
+import 'package:trucks/core/styles.dart';
 
 class LastAddress extends StatelessWidget {
   const LastAddress({
@@ -30,7 +30,7 @@ class LastAddress extends StatelessWidget {
           ),
         ),
         const Icon(Icons.location_on_outlined)
-      ],
+      ,],
     );
   }
 }

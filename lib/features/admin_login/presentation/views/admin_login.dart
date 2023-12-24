@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:trucks/core/component/component.dart';
 import 'package:trucks/features/admin_screen/presentation/views/admin_home.dart';
 
-import '../../../choose_login_type/presentation/views/choose_login_type.dart';
+import 'package:trucks/features/choose_login_type/presentation/views/choose_login_type.dart';
 
 class AdminLoginView extends StatefulWidget {
   const AdminLoginView({super.key});
@@ -13,13 +13,14 @@ class AdminLoginView extends StatefulWidget {
 
 class _AdminLoginViewState extends State<AdminLoginView> {
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-  var formkey = GlobalKey<FormState>();
+  GlobalKey<FormState> formkey = GlobalKey<FormState>();
   bool isPassword = true;
-  String? email, password;
+  String? email;
+  String?password;
 
   TextEditingController? nameController = TextEditingController();
-  var passwordController = TextEditingController();
-  var passwordConfirmController = TextEditingController();
+   TextEditingController  passwordController = TextEditingController();
+  TextEditingController passwordConfirmController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +65,6 @@ class _AdminLoginViewState extends State<AdminLoginView> {
                 ),
                 CustomTextFormFieldWithTitle(
                   title: "كلمة المرور",
-                  titleColor: Colors.black,
                   errorColor: Colors.red,
                   validation: (value) {
                     if (value!.isEmpty) {
@@ -88,7 +88,7 @@ class _AdminLoginViewState extends State<AdminLoginView> {
                       });
                     },
                     icon: Icon(
-                        isPassword ? Icons.visibility_off : Icons.visibility),
+                        isPassword ? Icons.visibility_off : Icons.visibility,),
                   ),
                 ),
                 SizedBox(
@@ -100,29 +100,28 @@ class _AdminLoginViewState extends State<AdminLoginView> {
                   textColor: Colors.black,
                   buttonColor: const Color(0xffFFAA36),
                   text: 'تسجيل الدخول',
-                  isLoading: false,
                   onTap: () {
-                    if (formkey.currentState!.validate()) {
+                    // if (formkey.currentState!.validate()) {
                       navigateandfinish(
-                          context: context, widget: const AdminHome());
-                    } else {
-                      setState(() {
-                        autovalidateMode = AutovalidateMode.always;
-                      });
-                    }
+                          context: context, widget: const AdminHome(),);
+                    // } else {
+                    //   setState(() {
+                    //     autovalidateMode = AutovalidateMode.always;
+                    //   });
+                    // }
                   },
                 ),
                 TextButton(
                   onPressed: () {
                     navigate_to(
-                        context: context, widget: const ChooseLoginType());
+                        context: context, widget: const ChooseLoginType(),);
                   },
                   child: Text(
                     'تغيير نوع تسجيل الدخول ',
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 16.sp,
-                        fontWeight: FontWeight.w700),
+                        fontWeight: FontWeight.w700,),
                   ),
                 ),
               ],

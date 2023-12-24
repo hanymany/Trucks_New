@@ -15,7 +15,7 @@ class Driver_Info extends StatelessWidget {
         Container(
           height: 1.h,
           width: double.infinity,
-          color: Color.fromARGB(155, 62, 62, 66),
+          color: const Color.fromARGB(155, 62, 62, 66),
         ),
         SizedBox(
           height: 18.h,
@@ -31,9 +31,9 @@ class Driver_Info extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w700,
-                    )),
-                Icon(Icons.logout_outlined)
-              ]),
+                    ),),
+                const Icon(Icons.logout_outlined)
+              ,],),
             ),
             SizedBox(
               width: 93.w,
@@ -55,7 +55,7 @@ class Driver_Info extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w700,
-                    )),
+                    ),),
               ],
             ),
           ],
@@ -66,7 +66,7 @@ class Driver_Info extends StatelessWidget {
         Container(
           height: 1.h,
           width: double.infinity,
-          color: Color.fromARGB(155, 62, 62, 66),
+          color: const Color.fromARGB(155, 62, 62, 66),
         ),
       ],
     );

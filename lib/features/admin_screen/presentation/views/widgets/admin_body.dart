@@ -21,7 +21,7 @@ class AdminBody extends StatelessWidget {
             text: 'أسم المسئول بالكامل',
             function: () {
               navigateandfinish(
-                  context: context, widget: const ChooseLoginType());
+                  context: context, widget: const ChooseLoginType(),);
             },
           ),
           Expanded(
@@ -53,7 +53,7 @@ class AdminBody extends StatelessWidget {
                               style: Styles.textStyle18,
                             ),
                           ),
-                        ]),
+                        ],),
                   ),
                   body: const TabBarView(
                     children: [
@@ -62,9 +62,9 @@ class AdminBody extends StatelessWidget {
                       AdminDrivers(),
                     ],
                   ),
-                )),
+                ),),
           )
-        ],
+        ,],
       ),
     );
   }

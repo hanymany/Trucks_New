@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:trucks/core/styles.dart';
 import 'package:trucks/shared/last_address.dart';
-
-import '../../../../../core/styles.dart';
 
 class TapToExpandContainer extends StatefulWidget {
   const TapToExpandContainer({
@@ -65,7 +64,7 @@ class _TapToExpandContainerState extends State<TapToExpandContainer> {
               style: Styles.textStyle14,
             ),
             const LastAddress(),
-            isExpanded2 ? const SizedBox() : const SizedBox(height: 20),
+            if (isExpanded2) const SizedBox() else const SizedBox(height: 20),
             AnimatedCrossFade(
               firstChild: const Text(
                 '',

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:trucks/core/styles.dart';
 import 'package:trucks/shared/loaded_cars_form.dart';
-
-import '../../../../../core/styles.dart';
 
 class TransportedCars extends StatelessWidget {
   const TransportedCars({super.key});
@@ -23,9 +22,9 @@ class TransportedCars extends StatelessWidget {
                   icon: Icon(
                     Icons.arrow_forward_outlined,
                     size: 32.h,
-                  )),
+                  ),),
             )
-          ],
+          ,],
           title: Text(
             "السيارات المشحونة",
             style: Styles.textStyle22,
@@ -45,6 +44,6 @@ class TransportedCars extends StatelessWidget {
             ),
           ),
           itemCount: 8,
-        ));
+        ),);
   }
 }

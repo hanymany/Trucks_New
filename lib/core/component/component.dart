@@ -10,9 +10,9 @@ Widget DefaultButton({
   Color color = Colors.blue,
   Color textcolor = Colors.white,
   Color bordercolor = Colors.transparent,
-  @required var function,
+  required VoidCallback function,
   double radius = 10,
-  @required var text,
+  required String text,
   bool uppercase = true,
 }) =>
     Container(
@@ -26,41 +26,51 @@ Widget DefaultButton({
       child: MaterialButton(
         onPressed: function,
         height: height,
-        child: Text(uppercase ? text.toUpperCase() : text,
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: fontsize,
-                color: textcolor)),
+        child: Text(
+          uppercase ? text.toUpperCase() : text,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: fontsize,
+            color: textcolor,
+          ),
+        ),
       ),
     );
 
-Widget DefaultFormField(
-        {@required TextEditingController? controller,
-        TextInputType texttype = TextInputType.emailAddress,
-        var prefixicon,
-        var sufixicon,
-        @required String? label,
-        var validate,
-        bool password = false,
-        int maxlines = 1,
-        double? container_height,
-        double? container_width,
-        var suffixbutton}) =>
+Widget DefaultFormField({
+  required TextEditingController? controller,
+  TextInputType texttype = TextInputType.emailAddress,
+  IconData? prefixicon,
+  IconData? sufixicon,
+  @required String? label,
+  String Function(String?)? validate,
+  bool password = false,
+  int maxlines = 1,
+  double? container_height,
+  double? container_width,
+  VoidCallback? suffixbutton,
+}) =>
     TextFormField(
-        controller: controller,
-        keyboardType: texttype,
-        obscureText: password,
-        maxLines: maxlines,
-        decoration: InputDecoration(
-            // hintText: 'Email Address',
-            prefixIcon: Icon(prefixicon == null ? null : prefixicon),
-            suffixIcon: IconButton(
-                onPressed: suffixbutton,
-                icon: Icon(sufixicon == null ? null : sufixicon)),
-            labelText: label,
-            border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
-        validator: validate);
+      controller: controller,
+      keyboardType: texttype,
+      obscureText: password,
+      maxLines: maxlines,
+      decoration: InputDecoration(
+// hintText: 'Email Address',
+        prefixIcon: Icon(prefixicon),
+        suffixIcon: IconButton(
+          onPressed: suffixbutton,
+          icon: Icon(
+            sufixicon,
+          ),
+        ),
+        labelText: label,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
+      validator: validate,
+    );
 
 Widget taskslist({required Map items}) => Padding(
       padding: const EdgeInsets.all(20.0),
@@ -90,21 +100,25 @@ Widget taskslist({required Map items}) => Padding(
               Text(
                 '${items['date']}',
                 style: const TextStyle(fontSize: 15, color: Colors.grey),
-              )
+              ),
             ],
           ),
         ],
       ),
     );
 
-void navigate_to({@required context, @required widget}) =>
+void navigate_to({required BuildContext context, required Widget widget}) =>
     Navigator.push(context, MaterialPageRoute(builder: (context) => widget));
 
-void navigateandfinish({@required context, @required widget}) {
+void navigateandfinish({
+  required BuildContext context,
+  required Widget widget,
+}) {
   Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(builder: (contex) => widget),
-      (route) => false).then((value) {});
+    context,
+    MaterialPageRoute(builder: (contex) => widget),
+    (route) => false,
+  ).then((value) {});
 }
 
 Widget formFieldWithContainer({
@@ -113,13 +127,14 @@ Widget formFieldWithContainer({
   IconData prefxicon = Icons.lock,
   required String? text,
   required TextEditingController? controller,
-  var ontap,
-  var onsubmit,
+  VoidCallback? ontap,
+  Function(String?)? onsubmit,
 }) =>
     Container(
       decoration: BoxDecoration(
-          color: containerColor ?? Colors.grey.withOpacity(.2),
-          borderRadius: BorderRadius.circular(radius)),
+        color: containerColor ?? Colors.grey.withOpacity(.2),
+        borderRadius: BorderRadius.circular(radius),
+      ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12.0),
         child: TextFormField(
@@ -129,18 +144,21 @@ Widget formFieldWithContainer({
           textAlign: TextAlign.right,
           style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
           decoration: InputDecoration(
-              prefixIcon: Icon(prefxicon),
-              border: InputBorder.none,
-              hintText: text),
+            prefixIcon: Icon(prefxicon),
+            border: InputBorder.none,
+            hintText: text,
+          ),
         ),
       ),
     );
 
 void showSnackBar(BuildContext context, String message) =>
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(message),
-      duration: const Duration(seconds: 2),
-    ));
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        duration: const Duration(seconds: 2),
+      ),
+    );
 /*
 Future<void> launchurl({required String address}) async {
   final Uri url = Uri.parse(address);
@@ -152,40 +170,43 @@ Future<void> launchurl({required String address}) async {
   }
 }
 */
-void dialogMessage(
-    {required BuildContext context,
-    required String subject,
-    required String firstbutton,
-    required String secondbutton,
-    void Function()? firstfunction,
-    void Function()? secondfunction}) {
+void dialogMessage({
+  required BuildContext context,
+  required String subject,
+  required String firstbutton,
+  required String secondbutton,
+  void Function()? firstfunction,
+  void Function()? secondfunction,
+}) {
   showDialog(
     context: context,
     builder: (context) => AlertDialog(
       contentPadding: EdgeInsets.all(15.h),
       backgroundColor: Colors.white,
-      title: Text(subject,
-          style: Styles.textStyle24,
-          textAlign: TextAlign.center,
-          textDirection: TextDirection.rtl),
+      title: Text(
+        subject,
+        style: Styles.textStyle24,
+        textAlign: TextAlign.center,
+        textDirection: TextDirection.rtl,
+      ),
       actions: [
         Row(
           children: [
             TextButton(
+              onPressed: secondfunction,
               child: Text(
                 secondbutton,
                 style:
                     Styles.textStyle24.copyWith(color: const Color(0xFFFF0000)),
               ),
-              onPressed: secondfunction,
             ),
-            Spacer(),
+            const Spacer(),
             TextButton(
+              onPressed: firstfunction,
               child: Text(
                 firstbutton,
                 style: Styles.textStyle24,
               ),
-              onPressed: firstfunction,
             ),
           ],
         ),
@@ -201,7 +222,7 @@ Widget CustomTextFormFieldWithTitle({
   @required String? hint,
   required String? title,
   Color? titleColor = Colors.black,
-  required textDirection,
+  required TextDirection textDirection,
   Widget? prefixIcon,
   String? prefixText,
   Widget? suffixIcon,
@@ -218,15 +239,22 @@ Widget CustomTextFormFieldWithTitle({
         children: [
           Padding(
             padding: EdgeInsets.only(bottom: 5.h),
-            child: Text(title!,
-                style: Styles.textStyle20.copyWith(color: titleColor)),
+            child: Text(
+              title!,
+              style: Styles.textStyle20.copyWith(
+                color: titleColor,
+              ),
+            ),
           ),
         ],
       ),
       TextFormField(
         enabled: isEnabled,
         style: TextStyle(
-            fontWeight: FontWeight.w600, color: Colors.black, fontSize: 21.sp),
+          fontWeight: FontWeight.w600,
+          color: Colors.black,
+          fontSize: 21.sp,
+        ),
         textDirection: textDirection,
         obscureText: ispassword,
         onChanged: onChange,
@@ -238,7 +266,10 @@ Widget CustomTextFormFieldWithTitle({
               EdgeInsets.symmetric(horizontal: 10.w, vertical: 17.h),
           //  contentPadding: EdgeInsets.fromLTRB(10, 20, 10, 20),
           errorStyle: TextStyle(
-              color: errorColor, fontSize: 14, fontWeight: FontWeight.bold),
+            color: errorColor,
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
+          ),
           hintStyle: TextStyle(
             fontSize: 16.sp,
             fontWeight: FontWeight.w400,
@@ -246,9 +277,10 @@ Widget CustomTextFormFieldWithTitle({
           hintTextDirection: TextDirection.rtl,
           prefixText: prefixText,
           prefixStyle: TextStyle(
-              color: Colors.black,
-              fontSize: 18.sp,
-              fontWeight: FontWeight.bold),
+            color: Colors.black,
+            fontSize: 18.sp,
+            fontWeight: FontWeight.bold,
+          ),
           filled: true,
           fillColor: Colors.white,
           hintText: hint,
@@ -265,7 +297,7 @@ Widget CustomTextFormFieldWithTitle({
           ),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color: Color(0xffFFAA36),
+              color: const Color(0xffFFAA36),
               width: 2.w,
             ),
             borderRadius: const BorderRadius.all(
@@ -274,19 +306,19 @@ Widget CustomTextFormFieldWithTitle({
           ),
           disabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color: Color(0xffFFAA36),
+              color: const Color(0xffFFAA36),
               width: 2.w,
             ),
-            borderRadius: BorderRadius.all(
+            borderRadius: const BorderRadius.all(
               Radius.circular(12),
             ),
           ),
           border: OutlineInputBorder(
             borderSide: BorderSide(
-              color: Color(0xffFFAA36),
+              color: const Color(0xffFFAA36),
               width: 2.w,
             ),
-            borderRadius: BorderRadius.all(
+            borderRadius: const BorderRadius.all(
               Radius.circular(12),
             ),
           ),
@@ -297,23 +329,25 @@ Widget CustomTextFormFieldWithTitle({
 }
 
 //-----------------------------------------------------------------------
-
 class CustomButon extends StatelessWidget {
-  CustomButon(
-      {this.onTap,
-      required this.text,
-      this.height,
-      this.width,
-      this.isLoading,
-      required this.buttonColor,
-      required this.textColor});
-  VoidCallback? onTap;
-  String text;
-  bool? isLoading = false;
-  Color buttonColor;
-  Color textColor;
-  double? height;
-  double? width;
+  const CustomButon({
+    this.onTap,
+    required this.text,
+    this.height,
+    this.width,
+    this.isLoading= false,
+    required this.buttonColor,
+    required this.textColor,
+  });
+
+  final VoidCallback? onTap;
+  final String text;
+  final  bool? isLoading ;
+  final  Color buttonColor;
+  final   Color textColor;
+  final   double? height;
+  final   double? width;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -331,9 +365,10 @@ class CustomButon extends StatelessWidget {
               : Text(
                   text,
                   style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 25.sp,
-                      color: textColor),
+                    fontWeight: FontWeight.w700,
+                    fontSize: 25.sp,
+                    color: textColor,
+                  ),
                 ),
         ),
       ),
@@ -344,16 +379,20 @@ class CustomButon extends StatelessWidget {
 //-----------------------------------------------------------------------
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar(
-      {Key? key, required this.logo, required this.icon, this.onPressed})
-      : super(key: key);
+  const CustomAppBar({
+    super.key,
+    required this.logo,
+    required this.icon,
+    this.onPressed,
+  });
 
   final String logo;
   final IconData icon;
   final void Function()? onPressed;
+
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return ColoredBox(
       color: Colors.black,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -375,18 +414,20 @@ class CustomAppBar extends StatelessWidget {
 }
 
 class CustomIcon extends StatelessWidget {
-  const CustomIcon({Key? key, required this.icon, this.onPressed})
-      : super(key: key);
+  const CustomIcon({super.key, required this.icon, this.onPressed});
 
   final void Function()? onPressed;
   final IconData icon;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 46,
       width: 46,
       decoration: BoxDecoration(
-          color: Colors.black, borderRadius: BorderRadius.circular(16)),
+        color: Colors.black,
+        borderRadius: BorderRadius.circular(16),
+      ),
       child: IconButton(
         color: Colors.white,
         onPressed: onPressed,

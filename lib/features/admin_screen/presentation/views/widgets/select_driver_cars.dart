@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../core/consts.dart';
+import 'package:trucks/core/consts.dart';
 
 class SelectDriverCars extends StatelessWidget {
   const SelectDriverCars({super.key});
@@ -18,8 +18,8 @@ class SelectDriverCars extends StatelessWidget {
           height: 80.h,
         ),
       ),
-      body: Column(
-        children: [],
+      body: const Column(
+
       ),
     );
   }

@@ -23,7 +23,7 @@ class DiriverScrenn extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 20.h),
           child: Column(
             children: [
-              Driver_Info(),
+              const Driver_Info(),
               SizedBox(
                 height: 30.h,
               ),
@@ -35,16 +35,16 @@ class DiriverScrenn extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 25.sp,
                       fontWeight: FontWeight.w700,
-                    )),
+                    ),),
               ),
               SizedBox(
                 height: 60.h,
               ),
-              refresh_widget(),
+              const refresh_widget(),
               SizedBox(
                 height: 45.h,
               ),
-              Location_Info(),
+              const Location_Info(),
             ],
           ),
         ),

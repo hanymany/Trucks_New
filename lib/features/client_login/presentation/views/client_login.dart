@@ -13,13 +13,14 @@ class ClientLoginView extends StatefulWidget {
 
 class _ClientLoginViewState extends State<ClientLoginView> {
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-  var formkey = GlobalKey<FormState>();
+   GlobalKey<FormState> formkey = GlobalKey<FormState>();
   bool isPassword = true;
-  String? email, password;
+  String? email;
+  String?password;
 
   TextEditingController? nameController = TextEditingController();
-  var passwordController = TextEditingController();
-  var passwordConfirmController = TextEditingController();
+   TextEditingController passwordController = TextEditingController();
+   TextEditingController passwordConfirmController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +65,6 @@ class _ClientLoginViewState extends State<ClientLoginView> {
                 ),
                 CustomTextFormFieldWithTitle(
                   title: "كلمة المرور",
-                  titleColor: Colors.black,
                   errorColor: Colors.red,
                   validation: (value) {
                     if (value!.isEmpty) {
@@ -88,7 +88,7 @@ class _ClientLoginViewState extends State<ClientLoginView> {
                       });
                     },
                     icon: Icon(
-                        isPassword ? Icons.visibility_off : Icons.visibility),
+                        isPassword ? Icons.visibility_off : Icons.visibility,),
                   ),
                 ),
                 SizedBox(
@@ -100,33 +100,32 @@ class _ClientLoginViewState extends State<ClientLoginView> {
                   textColor: Colors.black,
                   buttonColor: const Color(0xffFFAA36),
                   text: 'تسجيل الدخول',
-                  isLoading: false,
                   onTap: () {
-                    if (formkey.currentState!.validate()) {
+                    // if (formkey.currentState!.validate()) {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => const ClientHome(),
                         ),
                       );
-                    } else {
-                      setState(() {
-                        autovalidateMode = AutovalidateMode.always;
-                      });
-                    }
+                    // } else {
+                    //   setState(() {
+                    //     autovalidateMode = AutovalidateMode.always;
+                    //   });
+                    // }
                   },
                 ),
                 TextButton(
                   onPressed: () {
                     navigate_to(
-                        context: context, widget: const ChooseLoginType());
+                        context: context, widget: const ChooseLoginType(),);
                   },
                   child: Text(
                     'تغيير نوع تسجيل الدخول ',
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 16.sp,
-                        fontWeight: FontWeight.w700),
+                        fontWeight: FontWeight.w700,),
                   ),
                 ),
               ],

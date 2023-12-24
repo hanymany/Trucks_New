@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import '../../../../../core/styles.dart';
-import '../../../../../shared/last_address.dart';
+import 'package:trucks/core/styles.dart';
+import 'package:trucks/shared/last_address.dart';
 
 class AdminClientsTapToExpand extends StatefulWidget {
   const AdminClientsTapToExpand({super.key});
@@ -17,6 +17,7 @@ class AdminClientsTapToExpand extends StatefulWidget {
 class _AdminClientsTapToExpandState extends State<AdminClientsTapToExpand> {
   bool isExpanded = true;
   int currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -61,7 +62,10 @@ class _AdminClientsTapToExpandState extends State<AdminClientsTapToExpand> {
                     ),
                   ],
                 ),
-                isExpanded ? const SizedBox() : const SizedBox(height: 20),
+                // Visibility(
+                //   visible: isExpanded,
+                //   child: const SizedBox(),
+                // ),
                 AnimatedCrossFade(
                   firstChild: const Text(
                     '',
@@ -69,115 +73,115 @@ class _AdminClientsTapToExpandState extends State<AdminClientsTapToExpand> {
                       fontSize: 0,
                     ),
                   ),
-                  secondChild:
-                      Stack(alignment: Alignment.bottomCenter, children: [
-                    Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: CarouselSlider(
-                        items: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Row(
-                                children: [
-                                  Text(
-                                    'الحالة',
-                                    style: Styles.textStyle16
-                                        .copyWith(color: Colors.green),
-                                  ),
-                                  const Spacer(),
-                                  Text(
-                                    'أسم و موديل السيارة',
-                                    style: Styles.textStyle16
-                                        .copyWith(fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 15.h,
-                              ),
-                              Text(
-                                'نوع السيارة',
-                                style: Styles.textStyle14,
-                              ),
-                              SizedBox(
-                                height: 15.h,
-                              ),
-                              Text(
-                                'رقم الشاسيه',
-                                style: Styles.textStyle14,
-                              ),
-                              SizedBox(
-                                height: 15.h,
-                              ),
-                              Text(
-                                'أسم المستلم',
-                                style: Styles.textStyle14,
-                              ),
-                              SizedBox(
-                                height: 15.h,
-                              ),
-                              Text(
-                                'رقم الرحلة',
-                                style: Styles.textStyle14,
-                              ),
-                              SizedBox(
-                                height: 15.h,
-                              ),
-                              Text(
-                                'أسم السائق',
-                                style: Styles.textStyle14,
-                              ),
-                              SizedBox(
-                                height: 20.h,
-                              ),
-                              const LastAddress(),
-                            ],
-                          ),
-                          Text(
-                            '(((((Second  Text)))))      ',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 15.7.sp,
+                  secondChild: Stack(
+                    alignment: Alignment.bottomCenter,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: CarouselSlider(
+                          items: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      'الحالة',
+                                      style: Styles.textStyle16
+                                          .copyWith(color: Colors.green),
+                                    ),
+                                    const Spacer(),
+                                    Text(
+                                      'أسم و موديل السيارة',
+                                      style: Styles.textStyle16.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 15.h,
+                                ),
+                                Text(
+                                  'نوع السيارة',
+                                  style: Styles.textStyle14,
+                                ),
+                                SizedBox(
+                                  height: 15.h,
+                                ),
+                                Text(
+                                  'رقم الشاسيه',
+                                  style: Styles.textStyle14,
+                                ),
+                                SizedBox(
+                                  height: 15.h,
+                                ),
+                                Text(
+                                  'أسم المستلم',
+                                  style: Styles.textStyle14,
+                                ),
+                                SizedBox(
+                                  height: 15.h,
+                                ),
+                                Text(
+                                  'رقم الرحلة',
+                                  style: Styles.textStyle14,
+                                ),
+                                SizedBox(
+                                  height: 15.h,
+                                ),
+                                Text(
+                                  'أسم السائق',
+                                  style: Styles.textStyle14,
+                                ),
+                                SizedBox(
+                                  height: 20.h,
+                                ),
+                                const LastAddress(),
+                              ],
                             ),
-                          ),
-                          Text(
-                            '(((((Third Text)))))     ',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 15.7.sp,
+                            Text(
+                              '(((((Second  Text)))))      ',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 15.7.sp,
+                              ),
                             ),
+                            Text(
+                              '(((((Third Text)))))     ',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 15.7.sp,
+                              ),
+                            ),
+                          ],
+                          options: CarouselOptions(
+                            height: 350.h,
+                            enableInfiniteScroll: false,
+                            // autoPlay: true,
+                            viewportFraction: 1,
+                            onPageChanged: (index, reason) {
+                              setState(() {
+                                currentIndex = index;
+                              });
+                            },
+
+                            //ssenlargeCenterPage: true,
+                            //enlargeStrategy: CenterPageEnlargeStrategy.height
                           ),
-                        ],
-                        options: CarouselOptions(
-                          initialPage: 0,
-                          height: 350.h,
-                          enableInfiniteScroll: false,
-                          reverse: false,
-                          // autoPlay: true,
-                          viewportFraction: 1,
-
-                          onPageChanged: (index, reason) {
-                            setState(() {
-                              currentIndex = index;
-                            });
-                          },
-
-                          //ssenlargeCenterPage: true,
-                          //enlargeStrategy: CenterPageEnlargeStrategy.height
                         ),
                       ),
-                    ),
-                    AnimatedSmoothIndicator(
-                      activeIndex: currentIndex,
-                      count: 3,
-                      effect: ExpandingDotsEffect(
-                          dotColor: Colors.grey,
+                      AnimatedSmoothIndicator(
+                        activeIndex: currentIndex,
+                        count: 3,
+                        effect: ExpandingDotsEffect(
                           activeDotColor: Colors.black,
                           dotHeight: 6.h,
-                          dotWidth: 17.w),
-                    ),
-                  ]),
+                          dotWidth: 17.w,
+                        ),
+                      ),
+                    ],
+                  ),
                   crossFadeState: isExpanded
                       ? CrossFadeState.showFirst
                       : CrossFadeState.showSecond,

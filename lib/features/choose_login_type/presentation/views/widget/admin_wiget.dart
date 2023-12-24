@@ -16,14 +16,13 @@ class AdminWidget extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) => const AdminLoginView(),
-                ));
+                ),);
           },
           height: 74.h,
           width: 271.w,
           text: "تسجيل الدخول كمسئول",
-          isLoading: false,
-          buttonColor: Color(0xffFFAA36),
-          textColor: Colors.black),
+          buttonColor: const Color(0xffFFAA36),
+          textColor: Colors.black,),
     );
   }
 }

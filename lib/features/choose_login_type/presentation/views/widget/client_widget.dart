@@ -16,14 +16,13 @@ class ClientWidget extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) => const ClientLoginView(),
-                ));
+                ),);
           },
           height: 74.h,
           width: 271.w,
           text: "تسجيل الدخول كعميل",
-          isLoading: false,
-          buttonColor: Color(0xff000000),
-          textColor: Colors.white),
+          buttonColor: const Color(0xff000000),
+          textColor: Colors.white,),
     );
   }
 }

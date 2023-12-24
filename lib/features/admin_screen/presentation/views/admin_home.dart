@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:trucks/core/consts.dart';
 import 'package:trucks/features/admin_screen/presentation/views/widgets/admin_body.dart';
-
-import '../../../../core/consts.dart';
 
 class AdminHome extends StatelessWidget {
   const AdminHome({super.key});

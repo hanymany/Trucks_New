@@ -13,14 +13,13 @@ class DriverWidget extends StatelessWidget {
       child: CustomButon(
           onTap: () {
             navigateandfinish(
-                context: context, widget: const DriverLoginView());
+                context: context, widget: const DriverLoginView(),);
           },
           height: 74.h,
           width: 271.w,
           text: "تسجيل الدخول كسائق",
-          isLoading: false,
-          buttonColor: Color(0xffFFCC86),
-          textColor: Colors.black),
+          buttonColor: const Color(0xffFFCC86),
+          textColor: Colors.black,),
     );
   }
 }

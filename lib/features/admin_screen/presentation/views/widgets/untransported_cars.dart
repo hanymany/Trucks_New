@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:trucks/core/styles.dart';
 import 'package:trucks/shared/cars_info_form.dart';
-
-import '../../../../../core/styles.dart';
 
 class UnTransportedCars extends StatelessWidget {
   const UnTransportedCars({super.key});
@@ -23,9 +22,9 @@ class UnTransportedCars extends StatelessWidget {
                   icon: Icon(
                     Icons.arrow_forward_outlined,
                     size: 32.h,
-                  )),
+                  ),),
             )
-          ],
+          ,],
           title: Text(
             "السيارات غير المشحونة",
             style: Styles.textStyle22,
@@ -43,6 +42,6 @@ class UnTransportedCars extends StatelessWidget {
             ),
           ),
           itemCount: 8,
-        ));
+        ),);
   }
 }

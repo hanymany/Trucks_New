@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../core/styles.dart';
+import 'package:trucks/core/styles.dart';
 
 class LogoutRow extends StatelessWidget {
   const LogoutRow({

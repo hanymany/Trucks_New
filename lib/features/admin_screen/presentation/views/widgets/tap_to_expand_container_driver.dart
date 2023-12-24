@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:trucks/core/styles.dart';
 import 'package:trucks/shared/last_address.dart';
-
-import '../../../../../core/styles.dart';
 
 class TapToExpandContainerDriver extends StatefulWidget {
   const TapToExpandContainerDriver({
@@ -68,7 +67,7 @@ class _TapToExpandContainerDriverState
               style: Styles.textStyle14,
             ),
             const LastAddress(),
-            isExpanded2 ? const SizedBox() : const SizedBox(height: 20),
+            if (isExpanded2) const SizedBox() else const SizedBox(height: 20),
             AnimatedCrossFade(
               firstChild: const Text(
                 '',
@@ -80,7 +79,7 @@ class _TapToExpandContainerDriverState
                 padding: EdgeInsets.all(15.h),
                 decoration: BoxDecoration(
                     color: AppColors.primryColor,
-                    borderRadius: BorderRadius.circular(8.h)),
+                    borderRadius: BorderRadius.circular(8.h),),
                 child: Row(
                   children: [
                     Text(
@@ -93,7 +92,7 @@ class _TapToExpandContainerDriverState
                       'أسم و موديل السيارة',
                       style: Styles.textStyle14,
                     )
-                  ],
+                  ,],
                 ),
               ),
               crossFadeState: isExpanded2

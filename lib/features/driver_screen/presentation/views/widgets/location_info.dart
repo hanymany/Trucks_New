@@ -34,7 +34,7 @@ class Location_Info extends StatelessWidget {
             style: TextStyle(
               fontSize: 16.sp,
               fontWeight: FontWeight.w400,
-            )),
+            ),),
         SizedBox(
           height: 16.h,
         ),
@@ -42,7 +42,7 @@ class Location_Info extends StatelessWidget {
             style: TextStyle(
               fontSize: 16.sp,
               fontWeight: FontWeight.w400,
-            )),
+            ),),
       ],
     );
   }

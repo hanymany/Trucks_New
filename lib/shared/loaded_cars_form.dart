@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../core/styles.dart';
+import 'package:trucks/core/styles.dart';
 
 class TruckLoadsForm extends StatelessWidget {
   const TruckLoadsForm({
@@ -32,7 +32,7 @@ class TruckLoadsForm extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8.h),
               color: AppColors.primryColor2,
-              border: Border.all(color: AppColors.borderColor)),
+              border: Border.all(color: AppColors.borderColor,),),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
