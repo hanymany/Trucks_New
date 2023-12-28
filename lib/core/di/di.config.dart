@@ -11,9 +11,15 @@
 import 'package:dio/dio.dart' as _i3;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
-import 'package:shared_preferences/shared_preferences.dart' as _i4;
+import 'package:shared_preferences/shared_preferences.dart' as _i8;
 
-import 'register_module.dart' as _i5;
+import '../shared/login/data/data_sources/remote/login_base_remote_data_source.dart'
+    as _i4;
+import '../shared/login/data/data_sources/remote/login_remote_data_source_impl.dart'
+    as _i5;
+import '../shared/login/domain/base_repo/login_base_repo.dart' as _i7;
+import '../shared/login/domain/use_case/login_use_case.dart' as _i6;
+import 'register_module.dart' as _i9;
 
 extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -28,7 +34,11 @@ extension GetItInjectableX on _i1.GetIt {
     );
     final registerModule = _$RegisterModule();
     gh.lazySingleton<_i3.Dio>(() => registerModule.dio);
-    await gh.factoryAsync<_i4.SharedPreferences>(
+    gh.lazySingleton<_i4.LoginBaseRemoteDataSource>(
+        () => _i5.LoginRemoteDataSourceImpl());
+    gh.lazySingleton<_i6.LoginUseCase>(
+        () => _i6.LoginUseCase(baseRepo: gh<_i7.LoginBaseRepo>()));
+    await gh.factoryAsync<_i8.SharedPreferences>(
       () => registerModule.prefs,
       preResolve: true,
     );
@@ -36,4 +46,4 @@ extension GetItInjectableX on _i1.GetIt {
   }
 }
 
-class _$RegisterModule extends _i5.RegisterModule {}
+class _$RegisterModule extends _i9.RegisterModule {}
