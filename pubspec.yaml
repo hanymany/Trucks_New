@@ -45,11 +45,12 @@ dependencies:
   injectable: ^2.3.0
   # Dependency Injection service locator
   get_it: ^7.6.0
-  # Functional error handling in flutter
-  dartz: ^0.10.1
   rounded_loading_button: ^2.1.0
   gap: ^3.0.1
-
+  # Functional error handling in flutter
+  multiple_result: ^5.1.0
+  flutter_form_builder: ^9.1.1
+  form_builder_validators: ^9.1.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
