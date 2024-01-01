@@ -2,18 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:trucks/core/styles.dart';
+import 'package:trucks/features/get_out_pays/domain/entities/get_out_pays_cars_response_entity.dart';
 
 class MaintanceForm extends StatelessWidget {
   const MaintanceForm({
     super.key,
-    required this.workerName,
-    required this.permission,
-    required this.permissionlabel,
+    required this.getOutPaysCarsResponseEntity,
   });
 
-  final String workerName;
-  final String permission;
-  final String permissionlabel;
+  final GetOutPaysCarsResponseEntity getOutPaysCarsResponseEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -22,16 +19,19 @@ class MaintanceForm extends StatelessWidget {
         Container(
           padding: EdgeInsets.all(12.h),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8.h),
-              color: AppColors.primryColor2,
-              border: Border.all(color: AppColors.borderColor,),),
+            borderRadius: BorderRadius.circular(8.h),
+            color: AppColors.primryColor2,
+            border: Border.all(
+              color: AppColors.borderColor,
+            ),
+          ),
           child: Column(
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    workerName,
+                    getOutPaysCarsResponseEntity.employee??'',
                     style: Styles.textStyle18,
                   ),
                   SizedBox(
@@ -47,14 +47,14 @@ class MaintanceForm extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    permission,
+                    getOutPaysCarsResponseEntity.employee??'',
                     style: Styles.textStyle18,
                   ),
                   SizedBox(
                     width: 10.h,
                   ),
                   Text(
-                    permissionlabel,
+                    getOutPaysCarsResponseEntity.employee??'',
                     style: Styles.textStyle16,
                   ),
                 ],

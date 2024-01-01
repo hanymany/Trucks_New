@@ -1,5 +1,5 @@
+import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:multiple_result/multiple_result.dart';
 import 'package:trucks/core/errors.dart';
 
 /// Base class for all use cases
@@ -23,7 +23,7 @@ abstract interface class BaseUseCase<Type, Params> {
   /// example: GetCurrencyListUseCase() instead of GetCurrencyListUseCase().call()
   ///
 
-  Future<Result<Type, Failure>> call(Params params);
+  Future<Either<Failure, Type>> call(Params params);
 }
 
 /// That NoParams class call when there is no any parameter call in any request

@@ -31,9 +31,11 @@ class LoginRemoteDataSourceImpl implements LoginBaseRemoteDataSource {
       path: path,
       data: loginBody,
     );
+    final responseData = response.data;
+
     try {
       return LoginResponseModel.fromJson(
-        response as Map<String, dynamic>,
+        responseData as Map<String, dynamic>,
       );
     } catch (e) {
       debugPrint('The Error Come From Login Is $e');

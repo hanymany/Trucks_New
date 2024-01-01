@@ -216,119 +216,119 @@ void dialogMessage({
 }
 //------------------------------------------------------------------------------
 
-Widget CustomTextFormFieldWithTitle({
-  @required TextEditingController? controller,
-  required TextInputType? type,
-  @required String? hint,
-  required String? title,
-  Color? titleColor = Colors.black,
-  required TextDirection textDirection,
-  Widget? prefixIcon,
-  String? prefixText,
-  Widget? suffixIcon,
-  @required Function(String)? onChange,
-  Color? errorColor,
-  bool ispassword = false,
-  bool isEnabled = true,
-  required String? Function(String?)? validation,
-}) {
-  return Column(
-    children: [
-      Row(
-        textDirection: TextDirection.rtl,
-        children: [
-          Padding(
-            padding: EdgeInsets.only(bottom: 5.h),
-            child: Text(
-              title!,
-              style: Styles.textStyle20.copyWith(
-                color: titleColor,
-              ),
-            ),
-          ),
-        ],
-      ),
-      TextFormField(
-        enabled: isEnabled,
-        style: TextStyle(
-          fontWeight: FontWeight.w600,
-          color: Colors.black,
-          fontSize: 21.sp,
-        ),
-        textDirection: textDirection,
-        obscureText: ispassword,
-        onChanged: onChange,
-        controller: controller,
-        validator: validation,
-        keyboardType: type,
-        decoration: InputDecoration(
-          contentPadding:
-              EdgeInsets.symmetric(horizontal: 10.w, vertical: 17.h),
-          //  contentPadding: EdgeInsets.fromLTRB(10, 20, 10, 20),
-          errorStyle: TextStyle(
-            color: errorColor,
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-          ),
-          hintStyle: TextStyle(
-            fontSize: 16.sp,
-            fontWeight: FontWeight.w400,
-          ),
-          hintTextDirection: TextDirection.rtl,
-          prefixText: prefixText,
-          prefixStyle: TextStyle(
-            color: Colors.black,
-            fontSize: 18.sp,
-            fontWeight: FontWeight.bold,
-          ),
-          filled: true,
-          fillColor: Colors.white,
-          hintText: hint,
-          prefixIcon: prefixIcon,
-          suffixIcon: suffixIcon,
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: const Color(0xffFFAA36),
-              width: 2.w,
-            ),
-            borderRadius: const BorderRadius.all(
-              Radius.circular(12),
-            ),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: const Color(0xffFFAA36),
-              width: 2.w,
-            ),
-            borderRadius: const BorderRadius.all(
-              Radius.circular(12),
-            ),
-          ),
-          disabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: const Color(0xffFFAA36),
-              width: 2.w,
-            ),
-            borderRadius: const BorderRadius.all(
-              Radius.circular(12),
-            ),
-          ),
-          border: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: const Color(0xffFFAA36),
-              width: 2.w,
-            ),
-            borderRadius: const BorderRadius.all(
-              Radius.circular(12),
-            ),
-          ),
-        ),
-      ),
-    ],
-  );
-}
-
-//-----------------------------------------------------------------------
+// Widget CustomTextFormFieldWithTitle({
+//   @required TextEditingController? controller,
+//   required TextInputType? type,
+//   @required String? hint,
+//   required String? title,
+//   Color? titleColor = Colors.black,
+//   required TextDirection textDirection,
+//   Widget? prefixIcon,
+//   String? prefixText,
+//   Widget? suffixIcon,
+//   @required Function(String)? onChange,
+//   Color? errorColor,
+//   bool ispassword = false,
+//   bool isEnabled = true,
+//   required String? Function(String?)? validation,
+// }) {
+//   return Column(
+//     children: [
+//       Row(
+//         textDirection: TextDirection.rtl,
+//         children: [
+//           Padding(
+//             padding: EdgeInsets.only(bottom: 5.h),
+//             child: Text(
+//               title!,
+//               style: Styles.textStyle20.copyWith(
+//                 color: titleColor,
+//               ),
+//             ),
+//           ),
+//         ],
+//       ),
+//       TextFormField(
+//         enabled: isEnabled,
+//         style: TextStyle(
+//           fontWeight: FontWeight.w600,
+//           color: Colors.black,
+//           fontSize: 21.sp,
+//         ),
+//         textDirection: textDirection,
+//         obscureText: ispassword,
+//         onChanged: onChange,
+//         controller: controller,
+//         validator: validation,
+//         keyboardType: type,
+//         decoration: InputDecoration(
+//           contentPadding:
+//               EdgeInsets.symmetric(horizontal: 10.w, vertical: 17.h),
+//           //  contentPadding: EdgeInsets.fromLTRB(10, 20, 10, 20),
+//           errorStyle: TextStyle(
+//             color: errorColor,
+//             fontSize: 14,
+//             fontWeight: FontWeight.bold,
+//           ),
+//           hintStyle: TextStyle(
+//             fontSize: 16.sp,
+//             fontWeight: FontWeight.w400,
+//           ),
+//           hintTextDirection: TextDirection.rtl,
+//           prefixText: prefixText,
+//           prefixStyle: TextStyle(
+//             color: Colors.black,
+//             fontSize: 18.sp,
+//             fontWeight: FontWeight.bold,
+//           ),
+//           filled: true,
+//           fillColor: Colors.white,
+//           hintText: hint,
+//           prefixIcon: prefixIcon,
+//           suffixIcon: suffixIcon,
+//           focusedBorder: OutlineInputBorder(
+//             borderSide: BorderSide(
+//               color: const Color(0xffFFAA36),
+//               width: 2.w,
+//             ),
+//             borderRadius: const BorderRadius.all(
+//               Radius.circular(12),
+//             ),
+//           ),
+//           enabledBorder: OutlineInputBorder(
+//             borderSide: BorderSide(
+//               color: const Color(0xffFFAA36),
+//               width: 2.w,
+//             ),
+//             borderRadius: const BorderRadius.all(
+//               Radius.circular(12),
+//             ),
+//           ),
+//           disabledBorder: OutlineInputBorder(
+//             borderSide: BorderSide(
+//               color: const Color(0xffFFAA36),
+//               width: 2.w,
+//             ),
+//             borderRadius: const BorderRadius.all(
+//               Radius.circular(12),
+//             ),
+//           ),
+//           border: OutlineInputBorder(
+//             borderSide: BorderSide(
+//               color: const Color(0xffFFAA36),
+//               width: 2.w,
+//             ),
+//             borderRadius: const BorderRadius.all(
+//               Radius.circular(12),
+//             ),
+//           ),
+//         ),
+//       ),
+//     ],
+//   );
+// }
+//
+// //-----------------------------------------------------------------------
 class CustomButon extends StatelessWidget {
   const CustomButon({
     this.onTap,

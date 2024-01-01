@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:trucks/core/consts.dart';
+import 'package:trucks/core/assets_gen/assets.gen.dart';
 import 'package:trucks/features/admin_screen/presentation/views/widgets/admin_body.dart';
 
 class AdminHome extends StatelessWidget {
@@ -12,10 +12,9 @@ class AdminHome extends StatelessWidget {
       appBar: AppBar(
         leading: const SizedBox(),
         centerTitle: true,
-        title: Image.asset(
-          Assets.logo,
-          fit: BoxFit.fill,
-          height: 80.h,
+        title: MyAssets.images.logo.image(
+          height: 100.h,
+          fit: BoxFit.cover,
         ),
       ),
       body: const AdminBody(),

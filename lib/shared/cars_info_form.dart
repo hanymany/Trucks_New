@@ -2,22 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:trucks/core/styles.dart';
+import 'package:trucks/features/get_uncharged_cars/domain/entities/get_uncharged_cars_response_entity.dart';
 
 class CarsInfoForm extends StatelessWidget {
   const CarsInfoForm({
     super.key,
-    required this.carType,
-    required this.clientName,
-    required this.reciverName,
-    required this.chassisNum,
-    required this.carModel,
+    required this.getUnChargedCarsResponseEntity,
   });
 
-  final String carType;
-  final String clientName;
-  final String reciverName;
-  final String chassisNum;
-  final String carModel;
+  final GetUnChargedCarsResponseEntity getUnChargedCarsResponseEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +19,12 @@ class CarsInfoForm extends StatelessWidget {
         Container(
           padding: EdgeInsets.all(12.h),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8.h),
-              color: AppColors.primryColor2,
-              border: Border.all(color: AppColors.borderColor,),),
+            borderRadius: BorderRadius.circular(8.h),
+            color: AppColors.primryColor2,
+            border: Border.all(
+              color: AppColors.borderColor,
+            ),
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
@@ -36,7 +32,7 @@ class CarsInfoForm extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    clientName,
+                    getUnChargedCarsResponseEntity.agentName ?? '',
                     style: Styles.textStyle18,
                   ),
                   SizedBox(
@@ -54,9 +50,12 @@ class CarsInfoForm extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text(
-                    reciverName,
-                    style: Styles.textStyle18,
+                  Expanded(
+                    child: Text(
+                      getUnChargedCarsResponseEntity.receiverName ?? '',
+                      style: Styles.textStyle18,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
                   SizedBox(
                     width: 10.h,
@@ -74,7 +73,7 @@ class CarsInfoForm extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    carModel,
+                    getUnChargedCarsResponseEntity.carModel ?? '',
                     style: Styles.textStyle18,
                   ),
                   SizedBox(
@@ -93,7 +92,7 @@ class CarsInfoForm extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    carType,
+                    getUnChargedCarsResponseEntity.carType ?? '',
                     style: Styles.textStyle18,
                   ),
                   SizedBox(
@@ -112,7 +111,7 @@ class CarsInfoForm extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    chassisNum,
+                    getUnChargedCarsResponseEntity.chaseeNumber ?? '',
                     style: Styles.textStyle18,
                   ),
                   SizedBox(

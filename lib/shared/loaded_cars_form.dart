@@ -2,26 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:trucks/core/styles.dart';
+import 'package:trucks/features/get_charged_cars/domain/entities/get_charged_cars_response_entity.dart';
 
 class TruckLoadsForm extends StatelessWidget {
   const TruckLoadsForm({
     super.key,
-    required this.carType,
-    required this.clientName,
-    required this.reciverName,
-    required this.chassisNum,
-    required this.carModel,
-    required this.driverName,
-    required this.tripNum,
+    required this.getChargedCarsResponseEntity,
   });
 
-  final String carType;
-  final String clientName;
-  final String driverName;
-  final String tripNum;
-  final String reciverName;
-  final String chassisNum;
-  final String carModel;
+  final GetChargedCarsResponseEntity getChargedCarsResponseEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -30,18 +19,26 @@ class TruckLoadsForm extends StatelessWidget {
         Container(
           padding: EdgeInsets.all(12.h),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8.h),
-              color: AppColors.primryColor2,
-              border: Border.all(color: AppColors.borderColor,),),
+            borderRadius: BorderRadius.circular(8.h),
+            color: AppColors.primryColor2,
+            border: Border.all(
+              color: AppColors.borderColor,
+            ),
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text(
-                    clientName,
-                    style: Styles.textStyle18,
+                  Expanded(
+                    child: Text(
+                      getChargedCarsResponseEntity.agentName??'',
+                      style: Styles.textStyle18,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+
+                    ),
                   ),
                   SizedBox(
                     width: 10.h,
@@ -55,9 +52,14 @@ class TruckLoadsForm extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text(
-                    reciverName,
-                    style: Styles.textStyle18,
+                  Expanded(
+                    child: Text(
+                      getChargedCarsResponseEntity.receiverName??'',
+                      style: Styles.textStyle18,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+
+                    ),
                   ),
                   SizedBox(
                     width: 10.h,
@@ -72,7 +74,7 @@ class TruckLoadsForm extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    driverName,
+                    getChargedCarsResponseEntity.driverName??'',
                     style: Styles.textStyle18,
                   ),
                   SizedBox(
@@ -88,7 +90,7 @@ class TruckLoadsForm extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    carModel,
+                    getChargedCarsResponseEntity.carModel??'',
                     style: Styles.textStyle18,
                   ),
                   SizedBox(
@@ -104,7 +106,7 @@ class TruckLoadsForm extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    carType,
+                    getChargedCarsResponseEntity.cartype??'',
                     style: Styles.textStyle18,
                   ),
                   SizedBox(
@@ -115,12 +117,27 @@ class TruckLoadsForm extends StatelessWidget {
                     style: Styles.textStyle16,
                   ),
                 ],
+              ), Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    getChargedCarsResponseEntity.carModel??'',
+                    style: Styles.textStyle18,
+                  ),
+                  SizedBox(
+                    width: 10.h,
+                  ),
+                  Text(
+                    "/الموديل",
+                    style: Styles.textStyle16,
+                  ),
+                ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    chassisNum,
+                    getChargedCarsResponseEntity.chaseeNumber??'',
                     style: Styles.textStyle18,
                   ),
                   SizedBox(
@@ -136,7 +153,7 @@ class TruckLoadsForm extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    tripNum,
+                    getChargedCarsResponseEntity.tripNumber??'',
                     style: Styles.textStyle18,
                   ),
                   SizedBox(

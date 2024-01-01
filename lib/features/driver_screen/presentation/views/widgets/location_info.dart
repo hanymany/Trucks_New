@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class Location_Info extends StatelessWidget {
-  const Location_Info({
+class LocationInfo extends StatelessWidget {
+  const LocationInfo({
     super.key,
   });
 

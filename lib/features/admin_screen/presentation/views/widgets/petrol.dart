@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:trucks/core/component/shimmer_effect/reports_shimmer_effect.dart';
+import 'package:trucks/core/di/index.dart';
 
 import 'package:trucks/core/styles.dart';
+import 'package:trucks/features/admin_screen/presentation/controller/get_out_pays_cars_cubit/get_out_pays_cars_cubit.dart';
+import 'package:trucks/features/get_out_pays/domain/ues_case/get_out_pays_cars_use_case.dart';
 import 'package:trucks/shared/maintance_form.dart';
 
 class Petrol extends StatelessWidget {
@@ -9,7 +14,9 @@ class Petrol extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return BlocProvider<GetOutPaysCarsCubit>(
+      create: (context) => GetOutPaysCarsCubit(useCase: di<GetOutPaysCarsUseCase>())..getAllOutPaysCars(),
+      child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
           leading: const SizedBox(),
@@ -17,30 +24,44 @@ class Petrol extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(right: 8.0),
               child: IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: Icon(
-                    Icons.arrow_forward_outlined,
-                    size: 32.h,
-                  ),),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icon(
+                  Icons.arrow_forward_outlined,
+                  size: 32.h,
+                ),),
             )
-          ,],
+            ,
+          ],
           title: Text(
             'بترول السيارات',
             style: Styles.textStyle22,
           ),
         ),
-        body: ListView.builder(
-          itemBuilder: (context, index) => Padding(
-            padding: EdgeInsets.all(12.0.h),
-            child: const MaintanceForm(
-              workerName: 'حسن محمد',
-              permission: '',
-              permissionlabel: '/اذن الصرف',
-            ),
-          ),
-          itemCount: 8,
-        ),);
+        body: BlocBuilder<GetOutPaysCarsCubit, GetOutPaysCarsState>(
+          builder: (context, state) {
+            if (state is GetOutPaysCarsLoadingState) {
+              return const ReportsShimmerEffect();
+            } else if (state is GetOutPaysCarsLoadedState) {
+              return ListView.separated(
+                padding: EdgeInsets.all(12.0.h),
+                separatorBuilder: (context, index) =>
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                itemBuilder: (context, index) =>
+                    MaintanceForm(
+                      getOutPaysCarsResponseEntity:
+                      state.getOutPaysCarsResponseEntity[index],
+                    ),
+                itemCount: state.getOutPaysCarsResponseEntity.length,
+              );
+            } else {
+              return Container();
+            }
+          },
+        ),
+      ),    );
   }
 }

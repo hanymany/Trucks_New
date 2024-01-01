@@ -1,4 +1,4 @@
 {
-  "@@locale": "en"
-
+  "@@locale": "en",
+  "login_successful": "Login successful. Welcome to Pyramids Line"
 }

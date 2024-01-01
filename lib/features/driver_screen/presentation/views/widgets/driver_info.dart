@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:trucks/core/component/component.dart';
+import 'package:trucks/features/Driver_Login/controller/driver_login_cubit/driver_login_cubit.dart';
 import 'package:trucks/features/choose_login_type/presentation/views/choose_login_type.dart';
 
-class Driver_Info extends StatelessWidget {
-  const Driver_Info({
+class DriverInfo extends StatelessWidget {
+  const DriverInfo({
     super.key,
   });
 
@@ -22,40 +24,52 @@ class Driver_Info extends StatelessWidget {
         ),
         Row(
           children: [
-            InkWell(
-              onTap: () {
-                navigate_to(context: context, widget: const ChooseLoginType());
-              },
-              child: Row(children: [
-                Text("تسجيل الخروج",
+            IconButton(
+              onPressed: () => navigateandfinish(
+                context: context,
+                widget: const ChooseLoginType(),
+              ),
+              icon: Row(
+                children: [
+                  Text(
+                    "تسجيل الخروج",
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w700,
-                    ),),
-                const Icon(Icons.logout_outlined)
-              ,],),
-            ),
-            SizedBox(
-              width: 93.w,
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  "أسم السائق بالكامل",
-                  style: TextStyle(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w700,
+                    ),
                   ),
+                  const Icon(Icons.logout_outlined),
+                ],
+              ),
+            ),
+            const Spacer(),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                BlocBuilder<DriverLoginCubit, DriverLoginState>(
+                  builder: (context, state) {
+                    if (state is DriverLoginLoadedState) {
+                      return Text(
+                        state.loginResponseEntity.name??'',
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w700,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                      );
+                    } else {
+                      return const Text('');
+                    }
+                  },
                 ),
                 SizedBox(
                   height: 8.h,
                 ),
-                Text("4.000  " + "  المبلغ المدفوع ",
-                    style: TextStyle(
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w700,
-                    ),),
+                // Text("4.000  " + "  المبلغ المدفوع ",
+                //     style: TextStyle(
+                //       fontSize: 12.sp,
+                //       fontWeight: FontWeight.w700,
+                //     ),),
               ],
             ),
           ],

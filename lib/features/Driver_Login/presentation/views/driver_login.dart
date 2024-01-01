@@ -1,29 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:trucks/core/component/component.dart';
+import 'package:trucks/core/component/custom_text_form_filed/custom_text_form_field.dart';
+import 'package:trucks/core/enums/const_enums.dart';
+import 'package:trucks/core/shared/login/domain/entites/login_request_entity.dart';
+import 'package:trucks/features/Driver_Login/controller/driver_login_cubit/driver_login_cubit.dart';
+import 'package:trucks/features/Driver_Login/presentation/widgets/driver_login_listener_widget.dart';
 import 'package:trucks/features/choose_login_type/presentation/views/choose_login_type.dart';
 import 'package:trucks/features/driver_screen/presentation/views/driver_screen.dart';
 
-class DriverLoginView extends StatefulWidget {
+class DriverLoginView extends HookWidget {
   const DriverLoginView({super.key});
 
   @override
-  State<DriverLoginView> createState() => _DriverLoginViewState();
-}
-
-class _DriverLoginViewState extends State<DriverLoginView> {
-  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-  GlobalKey<FormState> formkey = GlobalKey<FormState>();
-  bool isPassword = true;
-  String? email;
-  String?password;
-
-  TextEditingController? nameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController passwordConfirmController = TextEditingController();
-
-  @override
   Widget build(BuildContext context) {
+    const AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+    final GlobalKey<FormState> formkey = GlobalKey<FormState>();
+    final ValueNotifier<bool> isPassword = useState(true);
+
+    final TextEditingController nameController = useTextEditingController();
+    final TextEditingController passwordController = useTextEditingController();
+
     return Scaffold(
       body: Form(
         key: formkey,
@@ -37,7 +36,8 @@ class _DriverLoginViewState extends State<DriverLoginView> {
                   height: 20.h,
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
                   child: SizedBox(
                     height: 300.h,
                     child: Image.asset(
@@ -45,15 +45,15 @@ class _DriverLoginViewState extends State<DriverLoginView> {
                     ),
                   ),
                 ),
-                CustomTextFormFieldWithTitle(
-                  controller: nameController,
-                  type: TextInputType.name,
+                CustomTextFormField(
+                  textEditingController: nameController,
+                  keyboardType: TextInputType.name,
                   suffixIcon: const Icon(Icons.person),
                   hint: "أسم المستخدم",
                   title: "أسم المستخدم",
                   textDirection: TextDirection.rtl,
-                  onChange: (String val) {},
-                  validation: (value) {
+                  onChanged: (String? val) {},
+                  validator: (value) {
                     if (value!.isEmpty) {
                       return 'يجب ادخال قيمة ';
                     }
@@ -63,32 +63,31 @@ class _DriverLoginViewState extends State<DriverLoginView> {
                 SizedBox(
                   height: 20.h,
                 ),
-                CustomTextFormFieldWithTitle(
+                CustomTextFormField(
                   title: "كلمة المرور",
                   errorColor: Colors.red,
-                  validation: (value) {
+                  validator: (value) {
                     if (value!.isEmpty) {
                       return 'يجب ادخال كلمة المرور';
                     }
                     return null;
                   },
-                  onChange: (data) {
-                    password = data;
-                  },
-                  controller: passwordController,
+                  onChanged: (data) {},
+                  textEditingController: passwordController,
                   textDirection: TextDirection.ltr,
-                  ispassword: isPassword,
-                  type: TextInputType.visiblePassword,
+                  isPassword: isPassword,
+                  keyboardType: TextInputType.visiblePassword,
                   hint: "كلمة المرور",
                   suffixIcon: const Icon(Icons.lock),
                   prefixIcon: IconButton(
                     onPressed: () {
-                      setState(() {
-                        isPassword = !isPassword;
-                      });
+                      isPassword.value = !isPassword.value;
                     },
                     icon: Icon(
-                        isPassword ? Icons.visibility_off : Icons.visibility,),
+                      isPassword.value
+                          ? Icons.visibility_off
+                          : Icons.visibility,
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -101,32 +100,43 @@ class _DriverLoginViewState extends State<DriverLoginView> {
                   buttonColor: const Color(0xffFFAA36),
                   text: 'تسجيل الدخول',
                   onTap: () {
-                    // if (formkey.currentState!.validate()) {
+                    context.read<DriverLoginCubit>().login(
+                          requestEntity: LoginRequestEntity(
+                            name: nameController.text,
+                            password: passwordController.text,
+                            loginType: LoginType.driver,
+                          ),
+                        );
+                    if (formkey.currentState!.validate()) {
                       navigateandfinish(
                         context: context,
                         widget: const DiriverScrenn(),
                       );
-                    // } else {
-                    //   setState(() {
-                    //     autovalidateMode = AutovalidateMode.always;
-                    //   });
-                  //  }
+                      // } else {
+                      //   setState(() {
+                      //     autovalidateMode = AutovalidateMode.always;
+                      //   });
+                    }
                   },
                 ),
                 TextButton(
                   onPressed: () {
                     navigate_to(
-                        context: context, widget: const ChooseLoginType(),);
+                      context: context,
+                      widget: const ChooseLoginType(),
+                    );
                   },
                   child: Text(
                     'تغيير نوع تسجيل الدخول ',
                     style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w700,),
+                      color: Colors.black,
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ),
-              ],
+                const DriverLoginDriverWidget()
+              ,],
             ),
           ),
         ),

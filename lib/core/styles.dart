@@ -30,6 +30,7 @@ class AppColors {
   static Color primryColor4 = const Color(0xffFFC56E);
   static Color primryColor5 = const Color(0xffFFC56D);
   static Color primryColor6 = const Color(0xffFFC474);
+  static const Color darkGrey = Color(0xFFB2B2B2);
 
   static Color containerColor = Colors.orange;
 }

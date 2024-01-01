@@ -1,5 +1,6 @@
 {
 
-  "@@locale": "ar"
+  "@@locale": "ar",
+  "login_successful": "تم تسجيل الدخول بنجاح. مرحبًا بك في Pyramids Line"
 
 }
